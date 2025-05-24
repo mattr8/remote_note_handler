@@ -1,0 +1,11 @@
+#!/bin/bash
+while read line; do
+  message=$(echo "$line" | jq -r '.message')
+  default_tst=$(date -u +"%Y-%m-%dT%H:%M:%S%z")
+  tst=$(echo "$line" | jq -r --arg default_tst "$default_tst" '.tst  // $default_tst')
+  clean_tst=$(echo "$tst" | sed 's/[:+-]//g; s/....$//')
+
+  echo $tst
+  echo $message
+  echo $message > pending/$clean_tst.md
+done

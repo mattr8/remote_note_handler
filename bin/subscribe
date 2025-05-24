@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# -q is QOS
+# -i is the client ID
+# -se is the session expiry (which is important for the broker to know how long to keep the session alive)
+# ^ this value is configured for 180 days (15552000 seconds)
+# --no-CleanStart is to not delete the session on disconnect
+# -ws is to use WebSocket connection
+# --secure is to us a secure connection
+mqtt sub \
+  -q 2 \
+  -i mattr8 \
+  -se 15552000 \
+  -ws \
+  --secure \
+  --no-cleanStart \
+  -t $MQTT_TOPIC \
+  -h $MQTT_HOST \
+  -p $MQTT_PORT \
+  -u $MQTT_USER \
+  -pw $MQTT_PW | bin/process_message
