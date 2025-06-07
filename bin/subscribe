@@ -9,7 +9,7 @@
 # --secure is to us a secure connection
 mqtt sub \
   -q 2 \
-  -i mattr8 \
+  -i $MQTT_CLIENT_ID \
   -se 15552000 \
   -ws \
   --secure \
