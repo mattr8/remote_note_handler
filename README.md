@@ -1,7 +1,7 @@
 ## Description
-Send notes to your another device over MQTT. The message recevied to the topic should be JSON containing the keys:
-- tst (for timestamp)
-- message (which will contain the note)
+Receive notes from another device over MQTT. The message recevied to the topic should be JSON containing the key-value pairs:
+- tst: the UNIX timestamp value of note creation
+- message: the base64 encoded note
 
 ## Build and run the docker container
 ```
