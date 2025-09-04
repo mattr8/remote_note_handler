@@ -4,7 +4,7 @@ while read line; do
   decoded_message=$(echo "$message" | base64 -d)
   default_tst=$(date -u +"%Y-%m-%dT%H:%M:%S%z")
   tst=$(echo "$line" | jq -r --arg default_tst "$default_tst" '.tst  // $default_tst')
-  clean_tst=$(echo "$tst" | sed 's/[:+-]//g; s/....$//')
+  clean_tst=$(echo "$tst" | sed 's/://g')
 
   echo $tst
   echo $decoded_message
