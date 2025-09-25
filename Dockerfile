@@ -21,6 +21,12 @@ WORKDIR /app
 RUN mkdir -p pending
 COPY bin/ ./bin/
 COPY .env .
+COPY start.sh ./start.sh
 
 RUN chmod +x ./bin/*
-ENTRYPOINT [ "bash", "-c", "set -a && source .env && exec ./bin/subscribe" ]
+
+# Make scripts executable
+RUN chmod +x ./bin/* ./start.sh
+
+# Use wrapper script as entrypoint
+ENTRYPOINT ["./start.sh"]
